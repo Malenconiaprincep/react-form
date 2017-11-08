@@ -1,19 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Form from './components/form'
+import Input from './components/input'
+import Related from './components/related'
 
 class App extends Component {
+
+  state = {}
+
+  onChange(data) {
+    this.setState({
+      data
+    })
+  }
+
+  onSubmit() {
+
+  }
+
+
   render() {
+
+    const data = this.state.data || {};
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Form
+        onSubmit={this.onSubmit.bind(this)}
+        onChange={this.onChange.bind(this)}>
+          <Related>
+            <div className="col">
+              <Input
+                formkey={'name'}
+                value={data.name}
+              />
+            </div>
+            <div className="col">
+              <Input
+                formkey={'age'}
+                value={data.age}
+              />
+            </div>
+          </Related>
+          <Related>
+            <div className="col">
+              <Input
+                formkey={'name1'}
+                value={data.name}
+              />
+            </div>
+            <div className="col">
+              <Input
+                formkey={'age1'}
+                value={data.age}
+              />
+            </div>
+          </Related>
+      </Form>
     );
   }
 }
